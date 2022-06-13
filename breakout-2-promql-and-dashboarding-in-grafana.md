@@ -187,7 +187,7 @@ Then click the **Add a new panel** button:
 
 We will be using these three queries:
 ```
-histogram_quantile(0.99, sum(rate(tns_request_duration_seconds_bucket{job="tns-loadgen"}[1m])) by (le))
+histogram_quantile(0.99, sum(rate(tns_request_duration_seconds_bucket{job="tns-loadgen"}[1m])) by (le)) * 1e3
 ```
 **Legend**: 99th Percentile
 
@@ -203,7 +203,7 @@ histogram_quantile(0.50, sum(rate(tns_request_duration_seconds_bucket{job="tns-l
 Add another query:
 
 ```
-sum(rate(tns_request_duration_seconds_sum{job="tns-loadgen"}[1m])) * 1e3 / sum(rate(tns_request_duration_seconds_count{job="tns-loadgen"}[1m]))
+(sum(rate(tns_request_duration_seconds_sum{job="tns-loadgen"}[1m])) / sum(rate(tns_request_duration_seconds_count{job="tns-loadgen"}[1m]))) * 1e3
 ```
 **Legend**: Average
 
