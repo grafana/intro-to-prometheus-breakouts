@@ -54,7 +54,7 @@ In preparation for your second breakout, you will be using metric names that sta
 tns_client_request_duration_seconds_count{job="tns-app", status_code="500"}
 ```
 
-This metric pulls the client request duration, and it uses labels in the curly braces to filter it for the job called `tns-app` with a `status_code` with a value of `500`. Take a look at the **Graph** tab - do you notice anything interesting?
+This metric pulls the client request count, and it uses labels in the curly braces to filter it for the job called `tns-app` with a `status_code` with a value of `500`. Take a look at the **Graph** tab - do you notice anything interesting?
 
 ![TNS app querying](images/image22.png)
 
@@ -78,18 +78,18 @@ Zoom out the graph by clicking the `+` sign next to the time marker (which defau
 
 ![Graph time range](images/image25.png)
 
-We have not discussed counters and query functions yet, but to give you a quick example, we are taking a counter and calculating the per second values using the `irate` function.
+We have not discussed counters and query functions yet, but to give you a quick example, we are taking a counter and calculating the per second values using the `rate` function.
 
 ```
 rate(node_network_receive_bytes_total[1m])
 ```
 
-This tells us each network device's statistics for received bytes. This is also a counter type of metric.
+This tells us each network device's statistics for received bytes. This is also a metric of type _counter_.
 
-The metric `node_network_receive_bytes_total` is a counter type of metric. A counter metric is a cumulative number that is always going up. For this example, the number of bytes received is always increasing. The `rate` function calculates the rate of increase of this metric per second. Lastly the `[1m]` is the range selector for the query, determining the window in which to average the values across (ie. take all the values over the last minute for this per-second value). This helps us specify how far back values should be fetched for each resulting data point.
+The metric `node_network_receive_bytes_total` is a metric of type _counter_. A counter metric is a cumulative number that is always going up. For this example, the number of bytes received is always increasing. The `rate` function calculates the rate of increase of this metric per second. Lastly the `[1m]` is the range selector for the query, determining the window in which to average the values across (ie. take all the values over the last minute for this per-second value). This helps us specify how far back values should be fetched for each resulting data point.
 
 ```
-count by(mode) (node_cpu_seconds_total)
+count by(mode) (node_cpu_seconds_total[1m])
 ```
 
 We will go more into PromQL in the next section, but as a preview, if you break down this query, it is counting the number of elements in this vector broken down by mode.
@@ -101,7 +101,7 @@ Count Count
 Since we aren't visualizing metrics in Grafana yet (and therefore, aren’t able to set a value unit such as percentage), let’s see what the total CPU usage is in terms of percentage:
 
 ```
-100 - (avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="idle"}[5m])) * 100)
+100 - (avg by (instance)(rate(node_cpu_seconds_total{job="node",mode="idle"}[5m])) * 100)
 ```
 
 Challenge: What do you think this query is telling us?
