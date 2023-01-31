@@ -33,7 +33,7 @@ Dashboard view
 ---
 
 ![Explore view](images/image18.png)
-Explorer view
+Explore view
 
 ---
 
@@ -67,7 +67,7 @@ We can see the instance and job names are the same but we have a few different m
 
 Let's turn this raw counter data into something useful. If you remember, counters are ever increasing unless reset.
 
-Before we add the `rate()` query function, let’s use the time picker to go back a few days to see how the time series is ever increasing. Change the time range to 'Last 7 days', and look at how the graph continually increases in value.
+Before we add the `rate()` query function, let’s use the time picker to go back a few days to see how the time series is ever increasing. Change the time range to 'Last 7 days' using the time range selector on the top-right of the Explore view. Look at how the graph continually increases in value over time.
 
 Time to add the `rate()` query function!
 
@@ -100,23 +100,23 @@ This is the request rate to this service. But what is more valuable for us is to
 sum(rate(tns_request_duration_seconds_count{job="tns-app", status_code!~"2.."}[5m]))
 ```
 
-Here, we are adding the label `status_code` with the label matching operator that selects labels that do not regex-match `2xx`.
+Here, we are adding the label `status_code` with the label matching operator that selects labels that do not match the regular expression `2..` (`2` followed by any two characters).
 
 You should see some failures now!
 
 Following Google’s SRE principles, we know that failure rates are not that useful or interesting. We want to know about the portion of total traffic that is failing.
 
-So let's divide the failed requests by the number of total requests:
+So let's divide the rate of failed requests by the rate of total requests:
 
 ```
-100*sum(rate(tns_request_duration_seconds_count{job="tns-app", status_code!~"2.."}[5m])) /
+sum(rate(tns_request_duration_seconds_count{job="tns-app", status_code!~"2.."}[5m])) /
 sum(rate(tns_request_duration_seconds_count{job="tns-app"}[5m]))
 ```
 
 And let's change the rate from 5 minutes to 1 hour and add a multiplier so it's easier to read:
 
 ```
-100*sum(rate(tns_request_duration_seconds_count{job="tns-app", status_code!~"2.."}[1h])) /
+100 * sum(rate(tns_request_duration_seconds_count{job="tns-app", status_code!~"2.."}[1h])) /
 sum(rate(tns_request_duration_seconds_count{job="tns-app"}[1h]))
 ```
 
@@ -135,7 +135,7 @@ sum by (method) (rate(tns_request_duration_seconds_count{job="tns-app"}[1h]))
 
 *A PromQL gotcha is if you specify which label you care about in your query (by adding `by (<label>)` to either the numerator or denominator), you need to add the same to the other half of the fraction.*
 
-It is recommended to always look at error rates by method so you can distinguish which route(s) is failing.
+It is recommended to always sum error rates by method so you can distinguish which route(s) is failing.
 
 ## Building a RED Dashboard
 
@@ -191,7 +191,7 @@ histogram_quantile(0.99, sum(rate(tns_request_duration_seconds_bucket{job="tns-l
 ```
 **Legend**: 99th Percentile
 
-Click the **Query** button to add query B:
+Click the **+ Query** button to add query B:
 
 ![Multiqueries](images/image8.png)
 
