@@ -1,7 +1,7 @@
 # Prometheus Breakout 1 - Exploring the UI
 
 ## Getting Started
-**Prometheus Server endpoint:** [http://35.226.217.238:9090](http://35.226.217.238:9090)
+**Prometheus Server endpoint:** [http://34.121.40.211:9090](http://34.121.40.211:9090)
 
 Connect to this URL in your web browser.  You'll be presented with the Prometheus UI which contains five tabs across the top:
 
@@ -24,12 +24,12 @@ Alerts  Graph  Status  Help  ClassicUI
 
 For this step, just click on the link and take a look at what this looks like so you can become familiar with the tool that is providing the raw statistics for Prometheus.
 
-[http://35.226.217.238:9100/metrics](http://35.226.217.238:9100/metrics)
+[http://34.121.40.211:9100/metrics](http://34.121.40.211:9100/metrics)
 
 ![Node exporter metrics](images/image13.png)
 
 ## Alertmanager UI
-[http://35.226.217.238:9093](http://35.226.217.238:9093)
+[http://34.121.40.211:9093](http://34.121.40.211:9093)
 
 Click this URL and take a look at the [Alertmanager UI](https://github.com/prometheus/alertmanager). The Alertmanager handles alerts sent by the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie.
 
@@ -38,7 +38,7 @@ For this step, just click on the link and take a look at what this looks like so
 ![Alertmanager page](images/image3.png)
 
 ## Querying
-Let's go back to the Prometheus server [webpage](http://35.226.217.238:9090) to graph a few queries using the Prometheus query language, [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+Let's go back to the Prometheus server [webpage](http://34.121.40.211:9090) to graph a few queries using the Prometheus query language, [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
 You can use the drop-down field next to the **Execute** button (*insert metric at cursor*) to start finding metrics to visualize. Or, simply begin typing a metric name and find your metric name using the autofill feature:
 
@@ -46,7 +46,7 @@ You can use the drop-down field next to the **Execute** button (*insert metric a
 
 Let’s take a look at the `up` metric. Type it into the query box and click **Execute**.
 
-The `up` metric is probably the most popular query to run. It gives you a value of 1 (up) or 0 (down) and lets you know which jobs are running. Besides using the [targets](http://35.226.217.238:9090/targets) page under the **Status** tab in the Prometheus UI, this is the quickest way to know what is up. Feel free to try typing other statistics to see how the query box works.
+The `up` metric is probably the most popular query to run. It gives you a value of 1 (up) or 0 (down) and lets you know which jobs are running. Besides using the [targets](http://34.121.40.211:9090/targets) page under the **Status** tab in the Prometheus UI, this is the quickest way to know what is up. Feel free to try typing other statistics to see how the query box works.
 
 In preparation for your second breakout, you will be using metric names that start with `tns_`. Take a look at a few examples.
 

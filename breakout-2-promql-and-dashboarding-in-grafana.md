@@ -17,7 +17,7 @@ On the top right, click the **Add data source** button. Select the Prometheus da
 
 Name the data source `workshop`.
 
-For the URL input, use [http://35.226.217.238:9090/](http://35.226.217.238:9090/)
+For the URL input, use [http://34.121.40.211:9090/](http://34.121.40.211:9090/)
 
 Click **Save & Test** to confirm your Prometheus data source was added correctly.
 
