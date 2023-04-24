@@ -238,7 +238,7 @@ When you are done, you will have created a useful SRE dashboard giving you valua
 Here is the completed JSON of the dashboard you can upload in the future: [https://grafana.com/grafana/dashboards/13017](https://grafana.com/grafana/dashboards/13017)
 
 * [Cardinality is key](https://www.robustperception.io/cardinality-is-key)
-* [SLO alerting recap](https://grafana.com/blog/2019/11/27/kubecon-recap-how-to-include-latency-in-slo-based-alerting/)
+* [SLO alerting recap](https://grafana.com/blog/2019/11/27/kubecon--recap-how-to-include-latency-in-slo-based-alerting/)
 * [Google SRE Book](https://landing.google.com/sre/sre-book/toc/index.html)
 * [Better histograms](https://grafana.com/blog/2020/08/24/kubecon-cloudnativecon-eu-recap-better-histograms-for-prometheus/)
 * [Introduction to PromQL](https://grafana.com/blog/2020/02/04/introduction-to-promql-the-prometheus-query-language/)
