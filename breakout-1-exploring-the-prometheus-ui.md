@@ -6,10 +6,11 @@
 Connect to this URL in your web browser.  You'll be presented with the Prometheus UI which contains five tabs across the top:
 
 ```bash
-Alerts  Graph  Status  Help  ClassicUI
+Alerts  Graph  Status  Help
 ```
 
-![Landing page](images/image19.png)
+![Landing page](https://github.com/grafana/intro-to-prometheus-breakouts/assets/62857586/55df67b7-e31d-4e69-a62b-0af6652cfe52)
+
 
 
 * By default, you'll see the **Graph** tab which contains a query box.
