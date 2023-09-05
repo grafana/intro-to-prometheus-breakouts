@@ -13,13 +13,13 @@ On the left hand side, at the bottom of the menu bar, go to the settings gear ->
 
 ![Add data source](images/image10.png)
 
-On the top right, click the **Add data source** button. Select the Prometheus data source.
+In the search toolbar, enter `Prometheus`, and then select `Prometheus data source` from the `Data source` section. In the next panel, select `Add new data source` in the top right of the page.
 
 Name the data source `workshop`.
 
 For the URL input, use [http://34.121.40.211:9090/](http://34.121.40.211:9090/)
 
-Click **Save & Test** to confirm your Prometheus data source was added correctly.
+Click **Save & Test** at the bottom of the page to confirm your Prometheus data source was added correctly.
 
 Great! We’ve just added the Prometheus data source that we used in the first breakout session.
 
@@ -50,7 +50,7 @@ First, use the drop-down to explore some of the metrics available to us. Looks f
 
 ![Explore workshop metrics](images/image11.gif)
 
-The query we want to start off with is `tns_request_duration_seconds_count`.
+The query we want to start off with is `tns_request_duration_seconds_count`. Enter this into the metrics browser field and `Run query` in the top right of the Explorer page.
 
 *Tip: Instead of clicking the **Run Query** button, you can use the shortcut `shift + enter | ctrl + enter`.*
 
@@ -62,6 +62,7 @@ Apply the job label:
 ```
 {job="tns-app"}
 ```
+to the end of the metric name (ie `tns_request_duration_seconds_count{job="tns-app"}`), and `Run query` again.
 
 We can see the instance and job names are the same but we have a few different methods and status codes.
 
@@ -153,37 +154,40 @@ To add a new dashboard, click on the **+** icon on the left hand side of the Gra
 
 ![Create dashboard](images/image14.png)
 
-To add your first panel, click on the **Add a new panel** box:
+Now use the `New dashboard` option after selecting `New` from the right hand side of the page.
+
+![New dashboard](images/image-14-1.png)
+
+To add your first panel, click on the **Add visualization** box:
 
 ![Add new panel](images/image20.png)
 
-For your query, make sure you have selected your `workshop` data source. Input this query in the PromQL input field:
+Now select your `workshop` data source to run the query against.
+
+For your query, input this query in the PromQL input field:
 ```
 sum by (status_code) (rate(tns_request_duration_seconds_count{job="tns-loadgen"}[1m]))
 ```
 
-Use these configurations:
+Add a relevant legend; select `Options` underneath the query, and then select `Custom`, finally input `{{status_code}}`.
 
-**Legend**: `{{status_code}}`
+Change the name of the visualization panel by moving to the right hand menu bar and changing `Panel Title` to `LoadGen QPS`.
 
-**Settings**:
-    Panel title: `LoadGen QPS`
+Search for `fill opacity` using the search field in the right hand menu bar, then change the value of `Graph styles > Fill opacity` from `0` to `100`.
 
-**Display**:
-    Fill opacity: `10`
+Finally search for `Stack series` and change the stack from `Off` to `Normal`.
 
 ![Edit panel](images/image16.png)
 
 Click **Apply**.
 
-Add another panel by clicking the **Add panel** button in the top right corner:
+Now change the time range from `Last 6 hours` to `Last 15 minutes` by using the time range picker in the top right (the clock icon).
+
+Add another panel by clicking the **Add** button:
 
 ![Add new panel](images/image17.png)
 
-
-Then click the **Add a new panel** button:
-
-![Add new panel](images/image4.png)
+Then click the **Visualization** button.
 
 We will be using these three queries:
 ```
