@@ -15,10 +15,10 @@ Alerts  Graph  Status  Help
 
 * By default, you'll see the **Graph** tab which contains a query box.
 * Go to the **Alerts** tab where you will see we have configured a few alerts. Take a look at the ones listed - does anything stand out?
-* Go to the **Status** tab. This contains a sub menu you can poke around in.
+* Go to the **Status** menu. This contains a sub menu you can poke around in.
   * The first one I would visit is the **Targets** page; this tells us what's been configured in the Prometheus server. These jobs are what we defined in the prometheus server yml config. They will either be up or down.
-  * Review **Runtime & Build Information**.
-  * *The **Configuration** page will present a similar configuration we just went over, with a bit more targets added.*
+  * Go to the **Status** menu and select **Runtime & Build Information** and review the configuration shown.
+  * *The **Configuration** page from the **Status** menu will present a similar configuration we just went over, with a bit more targets added.*
 
 ## Node Exporter
 [Node exporter](https://github.com/prometheus/node_exporter) is running on the endpoint below and we can check the metrics by visiting its /metrics endpoint.
@@ -71,7 +71,7 @@ node_cpu_seconds_total
 
 This metric tells you how many seconds each CPU spent doing each type of work (such as `mode="idle"`, time when the CPU had nothing to do).
 
-Now try switching from the **Table** output to **Graph** visualization by clicking on the **Graph** tab to get a feel for the Prometheus graphing capabilities.
+Now try switching from the **Table** output to **Graph** visualization by clicking on the **Graph** tab to get a feel for the Prometheus graphing capabilities. You may need to remove the previous node_ metric so your graph shows as the below graphic.
 
 ![Graph selection](images/image23.png)
 
@@ -90,7 +90,7 @@ This tells us each network device's statistics for received bytes. This is also 
 The metric `node_network_receive_bytes_total` is a metric of type _counter_. A counter metric is a cumulative number that is always going up. For this example, the number of bytes received is always increasing. The `rate` function calculates the rate of increase of this metric per second. Lastly the `[1m]` is the range selector for the query, determining the window in which to average the values across (ie. take all the values over the last minute for this per-second value). This helps us specify how far back values should be fetched for each resulting data point.
 
 ```
-count by(mode) (node_cpu_seconds_total[1m])
+count by(mode) (node_cpu_seconds_total)
 ```
 
 We will go more into PromQL in the next section, but as a preview, if you break down this query, it is counting the number of elements in this vector broken down by mode.
